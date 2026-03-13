@@ -1,13 +1,26 @@
 import { initializeApp } from "./main";
-import { GalleryImage } from "./models";
-
-import { montvillaGallery } from "./modules/images";
+import { montvillaGallery, type GalleryImage } from "./modules/images";
 
 function loadGallery() {
-
+    const gallerySection = document.getElementById("gallery-section") as HTMLElement;
+    const galleryContainer = montvillaGallery.reduce((acc: HTMLElement, currentPhoto: GalleryImage) => {
+        const imgDiv = document.createElement("div");
+        const nextImage = document.createElement("img") as HTMLImageElement ;
+        nextImage.src = currentPhoto["thumbnail"];
+        nextImage.alt = currentPhoto["alt"];
+        nextImage.addEventListener('click', () => {
+            alert(currentPhoto["url"]);
+        })
+        imgDiv.appendChild(nextImage);
+        acc.appendChild(imgDiv);
+        return acc;
+    }, document.createElement("div"));
+    galleryContainer.setAttribute("id", "gallery-container");
+    gallerySection.appendChild(galleryContainer);
 }
 
 initializeApp("", "Montvilla").then(async () => {
+    loadGallery();
     const overviewButton = document.getElementById("overview-button") as HTMLElement;
     const galleryButton = document.getElementById("gallery-button") as HTMLElement;
     const thingsButton = document.getElementById("things-button") as HTMLElement;

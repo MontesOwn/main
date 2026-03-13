@@ -14,6 +14,7 @@
         --text-main: #eeeeee;
         --glass: rgba(0, 0, 0, 0.8);
         --border: rgba(255, 255, 255, 0.1);
+        --glass: rgba(0, 0, 0, 0.8);
     }
 }
 
@@ -24,6 +25,7 @@
         --text-main: #1a1a1a;
         --glass: rgba(255, 255, 255, 0.8);
         --border: rgba(0, 0, 0, 0.1);
+        --glass: rgba(255, 255, 255, 0.8);
     }
 }
 
@@ -271,12 +273,33 @@ nav a:hover {
 }
 
 #gallery-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 5px;
+    column-count: 3;
+    column-gap: 16px;
+    padding: 16px;
 }
 
-#gallery-container img {
-    height: 200px;
+#gallery-container div {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+    break-inside: avoid;
+}
+
+#gallery-container div img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+#gallery-container div img:hover {
+    transform: scale(1.05);
+}
+@media (max-width: 900px) {
+  #gallery-container { column-count: 2; }
+}
+@media (max-width: 600px) {
+  #gallery-container { column-count: 1; }
 }
