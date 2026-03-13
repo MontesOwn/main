@@ -273,7 +273,7 @@ nav a:hover {
 }
 
 #gallery-container {
-    column-count: 3;
+    column-count: 4;
     column-gap: 16px;
     padding: 16px;
 }
@@ -296,6 +296,9 @@ nav a:hover {
 
 #gallery-container div img:hover {
     transform: scale(1.05);
+}
+@media (max-width: 1200px) {
+  #gallery-container { column-count: 3; }
 }
 @media (max-width: 900px) {
   #gallery-container { column-count: 2; }

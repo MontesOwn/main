@@ -1,16 +1,17 @@
 import { initializeApp } from "./main";
-import { montvillaGallery, type GalleryImage } from "./modules/images";
+import { montvillaGallery, type GalleryImage, calculateSpan } from "./modules/images";
 
 function loadGallery() {
     const gallerySection = document.getElementById("gallery-section") as HTMLElement;
-    const galleryContainer = montvillaGallery.reduce((acc: HTMLElement, currentPhoto: GalleryImage) => {
+    const galleryContainer = montvillaGallery.reduce((acc: HTMLElement, currentPhoto: GalleryImage, index) => {
         const imgDiv = document.createElement("div");
         const nextImage = document.createElement("img") as HTMLImageElement ;
         nextImage.src = currentPhoto["thumbnail"];
         nextImage.alt = currentPhoto["alt"];
+        nextImage.classList.add(calculateSpan(currentPhoto["width"], currentPhoto["height"]));
         nextImage.addEventListener('click', () => {
-            alert(currentPhoto["url"]);
-        })
+            alert(index);
+        });
         imgDiv.appendChild(nextImage);
         acc.appendChild(imgDiv);
         return acc;
