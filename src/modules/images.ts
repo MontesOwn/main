@@ -1,26 +1,51 @@
 export interface GalleryImage {
     url: string;
+    thumbnail: string;
     alt: string;
     width: number;
     height: number;
-    spanClass: 'span-wide' | 'span-tall' | 'span-big' | 'span-standard';
+    spanClass: 'span-wide' | 'span-tall' | 'span-standard';
 }
-
-export const calculateSpan = (width: number, height: number): GalleryImage['spanClass'] => {
-  const ratio = width / height;
-
-  if (ratio > 1.2) return 'span-wide';      // Landscape
-  if (ratio < 0.8) return 'span-tall';      // Portrait
-  if (width > 1200 && height > 1200) return 'span-big'; // High-res square
-  return 'span-standard';                   // Regular square-ish
-};
 
 export const montvillaGallery: GalleryImage[] = [
     {
-        url: "",
-        alt: "",
-        width: 0,
-        height: 0,
-        spanClass: 
-    }
+        url: '',
+        thumbnail: '',
+        alt: 'Front room with desk and sofa/bed',
+        width: 400,
+        height: 300,
+        spanClass: 'span-wide'
+    },
+    {
+        url: '',
+        thumbnail: '',
+        alt: 'Front bathroom',
+        width: 300,
+        height: 400,
+        spanClass: 'span-tall'
+    },
+    {
+        url: '',
+        thumbnail: '',
+        alt: 'Kitchen',
+        width: 400,
+        height: 300,
+        spanClass: 'span-wide'
+    },
+    {
+        url: '',
+        thumbnail: '',
+        alt: 'Kitchen',
+        width: 400,
+        height: 300,
+        spanClass: 'span-wide'
+    },
+    {
+        url: '',
+        thumbnail: '',
+        alt: 'Breakfast Nook',
+        width: 400,
+        height: 300,
+        spanClass: 'span-wide'
+    },
 ];
