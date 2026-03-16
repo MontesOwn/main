@@ -5,6 +5,12 @@
     --red-accent: #b81f24;
     --red-hover: #a51b20;
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --message-text: #fff;
+    --error-background: #b81f24;
+    --error-hover: #a51b20;
+    --success-background: green;
+    --delete-background: #fc6a03;
+    --info-background: #006270;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,7 +19,7 @@
         --bg-surface: #1a1a1a;
         --text-main: #eeeeee;
         --glass: rgba(0, 0, 0, 0.8);
-        --border: rgba(255, 255, 255, 0.1);
+        --border: rgba(255, 255, 255, 0.5);
         --glass: rgba(0, 0, 0, 0.8);
     }
 }
@@ -24,7 +30,7 @@
         --bg-surface: #f9f9f9;
         --text-main: #1a1a1a;
         --glass: rgba(255, 255, 255, 0.8);
-        --border: rgba(0, 0, 0, 0.1);
+        --border: rgba(0, 0, 0, 0.5);
         --glass: rgba(255, 255, 255, 0.8);
     }
 }
@@ -49,12 +55,27 @@ body {
     background: var(--bg-surface);
     border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 20px;
     transition: transform 0.3s ease;
+    overflow: hidden;
+    margin: 5px 0;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+.two-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.card #info {
+    padding: 20px;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.one-col {
+    padding: 20px;
 }
 
 .noScroll {
@@ -65,18 +86,17 @@ body {
 #page-wrapper {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 100vh auto auto auto; /* Hero is 100vh */
+    grid-template-rows: 100vh auto auto auto auto;
     grid-template-areas:
         "hero"
         "header"
-        "message"
+        "main-spacer"
         "main"
         "footer";
 }
 
-/* If you want the H1 to sit OVER the image at the top */
 header {
-    grid-area: hero; /* Assign it to the same space as the image */
+    grid-area: hero;
     align-self: start;
     z-index: 5;
 }
@@ -108,9 +128,15 @@ header h1 {
 main {
     grid-area: main;
     position: relative;
-    margin-top: -50vh; /* This creates the 3/4ths overlap */
     padding: 60px 5%;
     z-index: 1;
+}
+
+.main-content {
+    background: var(--bg-surface);
+    margin-top: -50vh;
+    padding: 20px;
+    border-radius: 20px;
 }
 
 main p {
@@ -121,88 +147,22 @@ main ul {
     margin: 0 0 10px 15px;
 }
 
-/* --- Navigation & Toggle --- */
-#mobile-nav-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 2000;
-    background: var(--red-accent);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 55px;
-    height: 55px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-nav {
-    position: fixed;
-    top: 0;
-    right: -100%; /* Hidden by default */
-    width: 100%;
-    height: 100vh;
-    background: var(--glass);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    z-index: 1000;
-    transition: right 0.4s ease-in-out;
-}
-
-nav.open {
-    right: 0 !important;
-}
-
-nav a {
-    color: var(--text-main);
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: 700;
-    transition: var(--transition);
-    cursor: pointer;
-}
-
-nav a:hover {
-    color: #fff;
-}
-
 /* --- Desktop Overrides (Screens larger than 850px) --- */
 @media (min-width: 851px) {
-    #mobile-nav-toggle {
-        display: none;
-    }
-
-    nav {
-        position: absolute; /* Place it back on top of the hero */
-        top: 80px;
-        right: 5%;
-        left: 5%;
-        width: auto;
-        height: auto;
-        flex-direction: row;
-        justify-content: space-around;
-        background: var(--red-accent);
-        padding: 15px 30px;
-        border-radius: 50px;
-        border: 1px solid var(--border);
-    }
-
-    nav a {
-        font-size: 1rem;
-        cursor: pointer;
-    }
-
-    main {
+    .main-content {
         margin-top: -25vh;
+    }
+
+    .two-col {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .card img {
+        height: 200px;
+        width: auto;
     }
 }
 
@@ -267,9 +227,7 @@ nav a:hover {
     background: var(--bg-surface);
     padding: 20px;
     border-radius: 0 0 20px 20px;
-    border-bottom: 1px solid var(--border);
-    border-left: 1px solid var(--border);
-    border-right: 1px solid var(--border);
+    border: 3px solid var(--red-accent);
 }
 
 #gallery-container {
@@ -298,11 +256,233 @@ nav a:hover {
     transform: scale(1.05);
 }
 @media (max-width: 1200px) {
-  #gallery-container { column-count: 3; }
+    #gallery-container {
+        column-count: 3;
+    }
 }
 @media (max-width: 900px) {
-  #gallery-container { column-count: 2; }
+    #gallery-container {
+        column-count: 2;
+    }
 }
 @media (max-width: 600px) {
-  #gallery-container { column-count: 1; }
+    #gallery-container {
+        column-count: 1;
+    }
+}
+
+#image-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background-color: var(--glass);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#image-viewer button {
+    background-color: var(--bg-surface);
+    border: 0;
+    border-radius: 5px;
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#image-viewer .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#previous-button {
+    order: 1;
+}
+
+#image-viewer #image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    order: 2;
+    height: 90%;
+}
+
+#next-button {
+    order: 3;
+}
+
+#image-viewer img {
+    height: 100%;
+}
+
+#image-viewer #image-caption {
+    background-color: var(--bg-surface);
+    color: var(--text-main);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.red-button {
+    border: 0;
+    background-color: var(--red-accent);
+    color: #fff;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.red-button:hover {
+    background-color: var(--red-hover);
+}
+
+#calendar-wrapper {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+form input {
+    border-bottom: 1px solid var(--text-main);
+    color: var(--text-main);
+}
+
+form textarea {
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
+}
+
+.booking-form {
+    max-width: 500px;
+    background-color: var(--bg-surface);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#date-range-picker {
+    padding-right: 30px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    cursor: pointer;
+    appearance: none;
+    color: var(--text-main);
+}
+
+.flatpickr-day.flatpickr-disabled, 
+.flatpickr-day.flatpickr-disabled:hover {
+    background: #e6e6e6;
+    color: #a0a0a0;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.message-wrapper {
+    position: fixed;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+}
+
+.message {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    animation-duration: 0.2s;
+    animation-name: fade-in;
+    animation-timing-function: ease-in;
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.12),
+        0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.message button {
+    background-color: inherit;
+    color: inherit;
+    border: 1px solid var(--message-text);
+    border-radius: 5px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.success {
+    background-color: var(--success-background);
+    color: var(--message-text);
+}
+
+.error {
+    background-color: var(--error-background);
+    color: var(--message-text);
+}
+
+.warn {
+    background-color: var(--delete-background);
+    color: var(--message-text);
+}
+
+.info {
+    background-color: var(--info-background);
+    color: var(--message-text);
+}
+
+#admin-bar {
+    display: flex;
+    gap: 5px;
+}
+
+#loading {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+}
+
+.loader {
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--red-accent);
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+#view-bookings {
+    background-color: var(--bg-surface);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+table thead {
+    border-bottom: 1px solid var(--text-main);
 }

@@ -1,0 +1,102 @@
+#booking-calendar-form-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-basis-full {
+    flex-basis: 100%;
+}
+
+.flex-basis-half {
+    flex-basis: 50%;
+}
+
+#calendar-container {
+    background-color: var(--bg-surface);
+    border-radius: 20px;
+}
+
+#calendar-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#calendar-header select {
+    font-size: 20px;
+    font-weight: 550;
+    cursor: pointer;
+}
+
+#calendar-body ul {
+    margin: 0 !important;
+    display: flex;
+    list-style: none;
+    display: flex;
+    text-align: center;
+    font-weight: 600;
+}
+
+#calendar-weekdays {
+    flex-wrap: nowrap;
+}
+
+#calendar-dates {
+    flex-wrap: wrap;
+}
+
+
+#calendar-dates li {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.active {
+    font-weight: 900;
+    font-size: 25px;
+    text-decoration: overline underline;
+}
+
+.inactive {
+    background-color: #DCDDDE;
+    color: #757C88;
+}
+
+
+#calendar-body ul li {
+    flex-basis: calc(100% / 7);
+    border: 1px solid var(--text-main);
+    padding: 5px;
+}
+
+.bg-green { background-color: #008000; color: white; }
+.bg-grey { background-color: #bdc3c7; color: white; }
+.bg-blue { background-color: #0000FF; color: white; }
+.inactive { background-color: #f9f9f9; color: #ccc; }
+
+#calendar-legend {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0 0 0;
+    padding: 10px 0;
+    background-color: var(--bg-surface);
+    border-radius: 20px;
+}
+
+#calendar-legend div {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+}
+.dot {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+}

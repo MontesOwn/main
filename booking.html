@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte's Own</title>
+    <link href="src/css/montvilla.css" rel="stylesheet" />
+    <link href="src/css/form.css" rel="stylesheet" />
+    <link href="src/css/nav.css" rel="stylesheet" />
+    <link href="src/css/montvillaCalendar.css" rel="stylesheet" />
+    <link rel="icon" href="images/icon.png" type="images/x-icon">
+    <style>
+        #main-spacer {
+            grid-area: main-spacer;
+            height: 0;
+            margin-top: -83vh;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#maincontent" class="skip-link" data-i18n="screen_reader_skip">Skip to main content</a>
+    <div id="page-wrapper">
+        <div class="hero-container">
+            <img src="images/montvilla-outside.png" alt="Hero Background">
+        </div>
+        <header></header>
+        <button id="mobile-nav-toggle" aria-label="Open Menu">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        <nav id="main-nav"></nav>
+        <section class="message-wrapper" id="main-message"></section>
+        <main>
+            <div id="main-spacer"></div>
+            <div id="admin-bar"></div>
+            <div id="booking-calendar-form-container">
+                <form id="booking-form-element" class="booking-form flex-basis-half">
+                    <h2 id="form-title">Book your stay</h2>
+                    <div id="form-loading">
+                        <div class="loader"></div>
+                        <h2>Loading...</h2>
+                    </div>
+                    <div id="form-contents" class="hide">
+                        <div class="form-row">
+                            <label for="dateRange">Select Date Range: </label>
+                            <input type="text" id="date-range-picker" name="dateRange" />
+                        </div>
+                        <div id="guest-only-fields">
+                            <div class="form-row">
+                                <label for="fullName">Full Name: </label>
+                                <input type="text" id="fullName" name="fullName" />
+                            </div>
+                            <div class="form-row">
+                                <label for="email">Email:</label>
+                                <input type="text" id="email" name="email" />
+                            </div>
+                            <div class="form-row">
+                                <label for="phone">Phone Number:</label>
+                                <input type="text" id="phone" name="phone" />
+                            </div>
+                            <div class="form-row">
+                                <label for="comments">Comments:</label>
+                                <textarea id="comments" name="comments"></textarea>
+                            </div>
+                        </div>
+                        <div class="button-row">
+                            <button type="reset" id="reset-btn" class="red-button">Clear Form</button>
+                            <button type="submit" id="submit" class="red-button">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <section id="view-bookings" class="hide flex-basis-full">
+                    <h2>Current Bookings</h2>
+                    <div id="bookings-loading">
+                        <div class="loader"></div>
+                        <h2>Loading...</h2>
+                    </div>
+                    <div id="bookings-content" class="hide"></div>
+                </section>
+                <section id="avalibility-calendar" class="flex-basis-half"></section>
+            </div>
+        </main>
+        <footer></footer>
+    </div>
+    <div id="image-viewer" class="hide"></div>
+    <script type="module" src="/src/booking"></script>
+</body>
+
+</html>

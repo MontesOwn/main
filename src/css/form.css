@@ -1,6 +1,5 @@
 main button {
     border: 0;
-    background-color: var(--purple-accent);
     color: #fff;
     cursor: pointer;
     margin: 5px;
@@ -12,10 +11,11 @@ main button {
     display: inline-block;
     text-align: center;
     font-size: 1rem;
+    background-color: transparent;
 }
 
 main button:hover {
-    background-color: #00459c;
+    background-color: var(--red-hover);
 }
 
 .form-row {

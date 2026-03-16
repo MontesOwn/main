@@ -1,5 +1,5 @@
 import { initializeApp } from "./main";
 
-initializeApp("Home", "Home").then(async () => {
+initializeApp("Monte's Own", "Home").then(async () => {
     console.log("running well")
 })

@@ -1,4 +1,4 @@
-import { Message, } from "../models";
+import { Message, type SelectOption, } from "../models";
 import { Timestamp } from "firebase/firestore";
 
 export function createButton(
@@ -156,4 +156,24 @@ export function makeElement(elementType: string, elementId: string | null, eleme
   }
   if (elementText) newElement.textContent = elementText;
   return newElement;
+}
+
+export function createSelect(options: SelectOption[], selectId: string): HTMLSelectElement {
+  const selectElement: HTMLSelectElement = options.reduce((acc: HTMLSelectElement, currentOption: SelectOption) => {
+    const newOption: HTMLOptionElement = document.createElement('option');
+    newOption.value = currentOption["value"];
+    newOption.textContent = currentOption["label"];
+    acc.appendChild(newOption);
+    return acc;
+  }, document.createElement('select'));
+  selectElement.setAttribute("id", selectId);
+  return selectElement
+}
+
+export function createListElement(listItems: any[], listType: string) {
+  return listItems.reduce((acc: HTMLElement, currentItem: any) => {
+    const li = makeElement("li", null, null, currentItem);
+    acc.appendChild(li);
+    return acc;
+  }, document.createElement(listType));
 }

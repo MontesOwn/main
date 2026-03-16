@@ -1,21 +1,26 @@
 import { navigateTo } from "./navigate.js";
 import { createLink, makeElement } from "./utils.js";
 import { auth } from "../firebase/firebase.js";
+import { signOutUser } from "../firebase/authService.js";
 
-export function loadHeader() {
+export function loadHeader(partentPage: string) {
     const headerElement = document.querySelector("header") as HTMLElement;
     const h1Wrapper = makeElement("div", null, "h1-wrapper", null);
-    const title = makeElement("h1", "title", null, "Monte's Own");
+    const title = makeElement("h1", "title", null, partentPage);
     h1Wrapper.appendChild(title)
     headerElement.appendChild(h1Wrapper);
 }
 
-export function loadNav() {
+export function loadNav(partentPage: string) {
     const nav = document.querySelector("nav") as HTMLElement;
     const home = createLink("Home", "", false);
     home.addEventListener('click', () => navigateTo('/'));
     nav.appendChild(home);
-    const beekeeping = createLink("Beekeeping", "", false);
+    const montvilla = createLink("Montvilla", "", false);
+    montvilla.addEventListener('click', () => navigateTo('/montvilla'));
+    montvilla.classList.add("hide");
+    if (partentPage === "Monte's Own") {
+        const beekeeping = createLink("Beekeeping", "", false);
     beekeeping.addEventListener('click', () => navigateTo('/beekeeping'));
     nav.appendChild(beekeeping);
     const maple = createLink("Maple Syrup", "", false);
@@ -27,14 +32,29 @@ export function loadNav() {
     const chickens = createLink("Raising Chickens", "", false);
     chickens.addEventListener('click', () => navigateTo('/chickens'));
     nav.appendChild(chickens);
+    nav.appendChild(montvilla);
+    } else if (partentPage === "Montvilla") {
+        const montvillaMain = createLink("Montvilla", "", false);
+        montvillaMain.addEventListener("click", () => navigateTo("/montvilla", {params: {tab: "overview"}}));
+        nav.appendChild(montvillaMain);
+        const montvillaGallery = createLink("Gallery", "", false);
+        montvillaGallery.addEventListener('click', () => navigateTo("/montvilla", {params: {tab: "gallery"}}));
+        nav.appendChild(montvillaGallery);
+        const montvillaNearby = createLink("Nearby", "", false);
+        montvillaNearby.addEventListener('click', () => navigateTo("/montvilla", {params: {tab: "nearby"}}));
+        nav.appendChild(montvillaNearby);
+        const viewAvailability = createLink("Booking", "", false);
+        viewAvailability.addEventListener('click', () => navigateTo("/booking"));
+        nav.appendChild(viewAvailability);
+    }
     
-
     const logout = makeElement("a", "logout", "hide", "Log Out");
     logout.addEventListener('click', () => signOutUser());
     nav.appendChild(logout);
     auth.onAuthStateChanged((user) => {
         if (user) {
             logout.classList.remove("hide");
+            montvilla.classList.remove("hide");
         }
     });
 }
@@ -44,8 +64,4 @@ export function loadFooter() {
     const ul = document.createElement("ul");
     footerElement.appendChild(ul);
     
-}
-
-function signOutUser(): any {
-    throw new Error("Function not implemented.");
 }
