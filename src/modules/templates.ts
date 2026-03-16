@@ -18,43 +18,41 @@ export function loadNav(partentPage: string) {
     nav.appendChild(home);
     const montvilla = createLink("Montvilla", "", false);
     montvilla.addEventListener('click', () => navigateTo('/montvilla'));
-    montvilla.classList.add("hide");
+    nav.appendChild(montvilla);
     if (partentPage === "Monte's Own") {
         const beekeeping = createLink("Beekeeping", "", false);
-    beekeeping.addEventListener('click', () => navigateTo('/beekeeping'));
-    nav.appendChild(beekeeping);
-    const maple = createLink("Maple Syrup", "", false);
-    maple.addEventListener('click', () => navigateTo('/maple'));
-    nav.appendChild(maple);
-    const garden = createLink("Our Garden", "", false);
-    garden.addEventListener('click', () => navigateTo('/garden'));
-    nav.appendChild(garden);
-    const chickens = createLink("Raising Chickens", "", false);
-    chickens.addEventListener('click', () => navigateTo('/chickens'));
-    nav.appendChild(chickens);
-    nav.appendChild(montvilla);
+        beekeeping.addEventListener('click', () => navigateTo('/beekeeping'));
+        nav.appendChild(beekeeping);
+        const maple = createLink("Maple Syrup", "", false);
+        maple.addEventListener('click', () => navigateTo('/maple'));
+        nav.appendChild(maple);
+        const garden = createLink("Our Garden", "", false);
+        garden.addEventListener('click', () => navigateTo('/garden'));
+        nav.appendChild(garden);
+        const chickens = createLink("Raising Chickens", "", false);
+        chickens.addEventListener('click', () => navigateTo('/chickens'));
+        nav.appendChild(chickens);
     } else if (partentPage === "Montvilla") {
         const montvillaMain = createLink("Montvilla", "", false);
-        montvillaMain.addEventListener("click", () => navigateTo("/montvilla", {params: {tab: "overview"}}));
+        montvillaMain.addEventListener("click", () => navigateTo("/montvilla", { params: { tab: "overview" } }));
         nav.appendChild(montvillaMain);
         const montvillaGallery = createLink("Gallery", "", false);
-        montvillaGallery.addEventListener('click', () => navigateTo("/montvilla", {params: {tab: "gallery"}}));
+        montvillaGallery.addEventListener('click', () => navigateTo("/montvilla", { params: { tab: "gallery" } }));
         nav.appendChild(montvillaGallery);
         const montvillaNearby = createLink("Nearby", "", false);
-        montvillaNearby.addEventListener('click', () => navigateTo("/montvilla", {params: {tab: "nearby"}}));
+        montvillaNearby.addEventListener('click', () => navigateTo("/montvilla", { params: { tab: "nearby" } }));
         nav.appendChild(montvillaNearby);
         const viewAvailability = createLink("Booking", "", false);
         viewAvailability.addEventListener('click', () => navigateTo("/booking"));
         nav.appendChild(viewAvailability);
     }
-    
+
     const logout = makeElement("a", "logout", "hide", "Log Out");
     logout.addEventListener('click', () => signOutUser());
     nav.appendChild(logout);
     auth.onAuthStateChanged((user) => {
         if (user) {
             logout.classList.remove("hide");
-            montvilla.classList.remove("hide");
         }
     });
 }
@@ -63,5 +61,5 @@ export function loadFooter() {
     const footerElement = document.querySelector("footer") as HTMLElement;
     const ul = document.createElement("ul");
     footerElement.appendChild(ul);
-    
+
 }
