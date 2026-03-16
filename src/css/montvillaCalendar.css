@@ -1,6 +1,7 @@
 #booking-calendar-form-container {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
 }
 
 .flex-basis-full {
@@ -45,7 +46,6 @@
     flex-wrap: wrap;
 }
 
-
 #calendar-dates li {
     aspect-ratio: 1 / 1;
     display: flex;
@@ -59,10 +59,9 @@
 }
 
 .inactive {
-    background-color: #DCDDDE;
-    color: #757C88;
+    background-color: #dcddde;
+    color: #757c88;
 }
-
 
 #calendar-body ul li {
     flex-basis: calc(100% / 7);
@@ -70,10 +69,22 @@
     padding: 5px;
 }
 
-.bg-green { background-color: #008000; color: white; }
-.bg-grey { background-color: #bdc3c7; color: white; }
-.bg-blue { background-color: #0000FF; color: white; }
-.inactive { background-color: #f9f9f9; color: #ccc; }
+.bg-green {
+    background-color: #008000;
+    color: white;
+}
+.bg-grey {
+    background-color: #bdc3c7;
+    color: white;
+}
+.bg-blue {
+    background-color: #0000ff;
+    color: white;
+}
+.inactive {
+    background-color: #f9f9f9;
+    color: #ccc;
+}
 
 #calendar-legend {
     display: flex;
@@ -99,4 +110,25 @@
     width: 20px;
     height: 20px;
     border-radius: 20px;
+}
+
+@media (max-width: 900px) {
+    #booking-calendar-form-container {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #booking-form-element {
+        width: 90%;
+    }
+
+    #today-button {
+        padding: 0;
+        margin: 0;
+    }
+
+    #view-bookings {
+        overflow-y: scroll;
+    }
 }
