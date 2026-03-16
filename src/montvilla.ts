@@ -1,6 +1,6 @@
 import { initializeApp } from "./main";
 import { montvillaGallery, type GalleryImage, calculateSpan } from "./modules/images";
-import { createButton, createMessage, makeElement } from "./modules/utils";
+import { createButton, makeElement } from "./modules/utils";
 
 function openImageViewer(imageIndex: number) {
     const galleryLength = montvillaGallery.length;
