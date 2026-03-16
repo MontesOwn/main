@@ -10,7 +10,6 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         login: resolve(__dirname, 'login.html'),
         montvilla: resolve(__dirname, 'montvilla.html'),
-        gallery: resolve(__dirname, 'gallery.html'),
         booking: resolve(__dirname, 'booking.html'),
         beekeeping: resolve(__dirname, 'beekeeping.html'),
         chickens: resolve(__dirname, 'chickens.html'),

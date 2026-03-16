@@ -4,7 +4,6 @@ export const ALL_APP_PATHS = [
   '/beekeeping',
   '/booking',
   '/chickens',
-  '/gallery',
   '/garden',
   '/login',
   '/maple',
