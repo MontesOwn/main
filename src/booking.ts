@@ -320,6 +320,81 @@ async function toggleFormElements() {
     }
 }
 
+function createBookingsDiv(bookingArray: BookingWithId[], sectionId: string, headingText: string) {
+    const div = makeElement("div", sectionId, "booking-block", null);
+
+    if (bookingArray.length === 0) {
+        const headingH2 = makeElement("h2", null, null, `No ${headingText}`);
+        div.appendChild(headingH2);
+    } else {
+        let expanded = false;
+        const bookingsSection = bookingArray.reduce((acc: HTMLElement, currentBooking: BookingWithId) => {
+            const nextArticle = makeElement("article", currentBooking["id"], "booking-article", null);
+            if (sectionId !== "owner-bookings") {
+                const nameP = makeElement("p", null, null, currentBooking["fullName"]);
+                nameP.prepend(makeElement("b", null, null, "Name: "));
+                nextArticle.appendChild(nameP);
+            }
+            const startDateP = makeElement("p", null, null, `${currentBooking["startDate"].toDate().toLocaleDateString()}`);
+            startDateP.prepend(makeElement("b", null, null, "Start Date: "))
+            nextArticle.appendChild(startDateP);
+            const endDate = makeElement("p", null, null, `${currentBooking["endDate"].toDate().toLocaleDateString()}`);
+            endDate.prepend(makeElement("b", null, null, "End Date: "));
+            nextArticle.appendChild(endDate);
+            if (currentBooking.email) {
+                const emailP = makeElement("p", null, null, currentBooking["email"]);
+                emailP.prepend(makeElement("b", null, null, "Email: "));
+                nextArticle.appendChild(emailP);
+            }
+            if (currentBooking["phoneNumber"]) {
+                const phoneP = makeElement("p", null, null, currentBooking["phoneNumber"]);
+                phoneP.prepend(makeElement("b", null, null, "Phone Number: "));
+                nextArticle.appendChild(phoneP);
+            }
+            if (currentBooking["comments"]) {
+                const commentsP = makeElement("p", null, null, currentBooking["comments"]);
+                commentsP.prepend(makeElement("b", null, null, "Comments: "));
+                nextArticle.appendChild(commentsP);
+            }
+            const requestedP = makeElement("p", null, null, `${currentBooking["createdAt"].toDate().toLocaleDateString()}`);
+            requestedP.prepend(makeElement("b", null, null, "Requested On: "));
+            nextArticle.appendChild(requestedP);
+            const buttonRow = makeElement("div", null, "button-row", null);
+            if (sectionId === "pending-bookings") {
+                const approveBtn = createButton("Approve", "button", "", "red-button", "check");
+                approveBtn.addEventListener("click", () => handleApprove(currentBooking));
+                buttonRow.appendChild(approveBtn);
+            }
+            const deleteBtn = createButton("Delete", "button", "", "red-button", "delete");
+            deleteBtn.addEventListener("click", () => handleDelete(currentBooking));
+            buttonRow.appendChild(deleteBtn);
+            nextArticle.appendChild(buttonRow);
+            acc.appendChild(nextArticle);
+            return acc;
+        }, makeElement("section", sectionId, "bookings-section hide", null));
+        const divHeading = makeElement("div", null, "pointer", null);
+        const headingH2 = makeElement("h2", null, null, `${headingText}: ${bookingArray.length}`);
+        divHeading.appendChild(headingH2);
+        const expandIcon = makeElement("p", null, "material-symbols-outlined", "expand_circle_down")
+        divHeading.addEventListener("click", () => {
+            if (expanded === false) {
+                expanded = true;
+                expandIcon.textContent = "expand_circle_up";
+                bookingsSection.classList.remove("hide");
+            } else {
+                expanded = false;
+                expandIcon.textContent = "expand_circle_down"
+                bookingsSection.classList.add("hide");
+            }
+        });
+        divHeading.appendChild(expandIcon);
+        div.appendChild(divHeading);
+
+        div.appendChild(bookingsSection);
+    }
+    return div;
+}
+
 async function loadBookingRevervations() {
     const bookingsContent = document.getElementById("bookings-content") as HTMLElement;
     const bookingsLoading = document.getElementById("bookings-loading") as HTMLElement;
@@ -329,140 +404,12 @@ async function loadBookingRevervations() {
     const pendingReservations = await getBookingsByStatus("pending");
     const approvedReservations = await getBookingsByStatus("approved");
     const ownerStays = await getBookingsByStatus("Owner");
-
-    if (pendingReservations.length === 0) {
-        const noPendingP = makeElement("P", null, null, "No pending Bookings");
-        bookingsContent.appendChild(noPendingP);
-    } else {
-        const pendingHeading = makeElement("h3", null, null, `Pending Bookings: ${pendingReservations.length}`);
-        bookingsContent.appendChild(pendingHeading);
-        const pendingTable = makeElement("table", "pendingTable", null, null);
-        const pendingTableHeader = createTableHeader(["Name", "Email", "Phone", "Start Date", "End Date", "Comments", "Approve", "Delete"], "left");
-        pendingTable.appendChild(pendingTableHeader);
-        const pendingTbody = pendingReservations.reduce((acc: HTMLElement, currentReservation: BookingWithId) => {
-            const newRow = document.createElement("tr");
-            const columns: (keyof BookingWithId)[] = [
-                "fullName",
-                "email",
-                "phoneNumber",
-                "startDate",
-                "endDate",
-                "comments"
-            ];
-            columns.forEach(key => {
-                const td = document.createElement("td");
-                let value = currentReservation[key];
-                if (value instanceof Timestamp) {
-                    value = value.toDate().toLocaleDateString();
-                }
-
-                td.textContent = (value ?? "").toString();
-                newRow.appendChild(td);
-            });
-            const approveTd = document.createElement("td");
-            const approveBtn = document.createElement("button");
-            approveBtn.textContent = "Check";
-            approveBtn.className = "material-symbols-outlined";
-            approveBtn.onclick = () => handleApprove(currentReservation);
-            approveTd.appendChild(approveBtn);
-            newRow.appendChild(approveTd);
-            const deleteTd = document.createElement("td");
-            const deleteBtn = document.createElement("button");
-            deleteBtn.textContent = "Delete";
-            deleteBtn.className = "material-symbols-outlined";
-            deleteBtn.onclick = () => handleDelete(currentReservation);
-            deleteTd.appendChild(deleteBtn);
-            newRow.appendChild(deleteTd);
-            acc.appendChild(newRow);
-            return acc;
-        }, document.createElement("tbody"));
-        pendingTable.appendChild(pendingTbody);
-        bookingsContent.appendChild(pendingTable);
-    }
-
-    if (approvedReservations.length === 0) {
-        const noApprovedP = makeElement("P", null, null, "No approved reservations");
-        bookingsContent.appendChild(noApprovedP);
-    } else {
-        const approvedHeading = makeElement("h3", null, null, `Approved Bookings: ${approvedReservations.length}`);
-        bookingsContent.appendChild(approvedHeading);
-        const approvedTable = makeElement("table", "approvedTable", null, null);
-        const approvedTableHeader = createTableHeader(["Name", "Email", "Phone", "Start Date", "End Date", "Comments", "Delete"], "left");
-        approvedTable.appendChild(approvedTableHeader);
-        const approvedTbody = approvedReservations.reduce((acc: HTMLElement, currentReservation: BookingWithId) => {
-            const newRow = document.createElement("tr");
-            const columns: (keyof BookingWithId)[] = [
-                "fullName",
-                "email",
-                "phoneNumber",
-                "startDate",
-                "endDate",
-                "comments"
-            ];
-            columns.forEach(key => {
-                const td = document.createElement("td");
-                let value = currentReservation[key];
-                if (value instanceof Timestamp) {
-                    value = value.toDate().toLocaleDateString();
-                }
-
-                td.textContent = (value ?? "").toString();
-                newRow.appendChild(td);
-            });
-            const deleteTd = document.createElement("td");
-            const deleteBtn = document.createElement("button");
-            deleteBtn.textContent = "Delete";
-            deleteBtn.className = "material-symbols-outlined";
-            deleteBtn.onclick = () => handleDelete(currentReservation);
-            deleteTd.appendChild(deleteBtn);
-            newRow.appendChild(deleteTd);
-            acc.appendChild(newRow);
-            return acc;
-        }, document.createElement("tbody"));
-        approvedTable.appendChild(approvedTbody);
-        bookingsContent.appendChild(approvedTable);
-    }
-
-    if (ownerStays.length === 0) {
-        const noOwnerP = makeElement("P", null, null, "The montvilles have not marked any stays");
-        bookingsContent.appendChild(noOwnerP);
-    } else {
-        const ownerHeading = makeElement("h3", null, null, `Montville stays: ${ownerStays.length}`);
-        bookingsContent.appendChild(ownerHeading);
-        const ownerTable = makeElement("table", "pendingTable", null, null);
-        const ownerTableHeader = createTableHeader(["Start Date", "End Date", "Delete"], "left");
-        ownerTable.appendChild(ownerTableHeader);
-        const ownerTbody = ownerStays.reduce((acc: HTMLElement, currentReservation: BookingWithId) => {
-            const newRow = document.createElement("tr");
-            const columns: (keyof BookingWithId)[] = [
-                "startDate",
-                "endDate"
-            ];
-            columns.forEach(key => {
-                const td = document.createElement("td");
-                let value = currentReservation[key];
-                if (value instanceof Timestamp) {
-                    value = value.toDate().toLocaleDateString();
-                }
-
-                td.textContent = (value ?? "").toString();
-                newRow.appendChild(td);
-            });
-            const deleteTd = document.createElement("td");
-            const deleteBtn = document.createElement("button");
-            deleteBtn.textContent = "Delete";
-            deleteBtn.className = "material-symbols-outlined";
-            deleteBtn.onclick = () => handleDelete(currentReservation);
-            deleteTd.appendChild(deleteBtn);
-            newRow.appendChild(deleteTd);
-            acc.appendChild(newRow);
-            return acc;
-        }, document.createElement("tbody"));
-        ownerTable.appendChild(ownerTbody);
-        ownerTable.style.textAlign = "left";
-        bookingsContent.appendChild(ownerTable);
-    }
-
+    const pendingDiv = createBookingsDiv(pendingReservations, "pending-bookings", "Pending Bookings");
+    bookingsContent.appendChild(pendingDiv);
+    const approvedDiv = createBookingsDiv(approvedReservations, "approved-bookings", "Approved Bookings");
+    bookingsContent.appendChild(approvedDiv);
+    const ownerDiv = createBookingsDiv(ownerStays, "owner-bookings", "Montville Bookings");
+    bookingsContent.appendChild(ownerDiv);
     bookingsLoading.classList.add("hide");
     bookingsContent.classList.remove("hide");
 }
@@ -479,7 +426,6 @@ initializeApp("Montvilla", "Monvilla Booking").then(async () => {
                 guestButton.addEventListener('click', () => {
                     viewBookingSection.classList.add("hide");
                     bookingForm.classList.remove("hide");
-                    avalibilityCalendarSection.classList.remove("hide");
                     formView = "Guest";
                     toggleFormElements();
                 });
@@ -488,7 +434,6 @@ initializeApp("Montvilla", "Monvilla Booking").then(async () => {
                 montvilleButton.addEventListener('click', () => {
                     viewBookingSection.classList.add("hide");
                     bookingForm.classList.remove("hide");
-                    avalibilityCalendarSection.classList.remove("hide");
                     formView = "Montville";
                     toggleFormElements();
                 });
@@ -497,20 +442,17 @@ initializeApp("Montvilla", "Monvilla Booking").then(async () => {
                 viewBookingButton.addEventListener('click', async () => {
                     bookingForm.classList.add("hide");
                     viewBookingSection.classList.remove("hide");
-                    avalibilityCalendarSection.classList.add("hide");
                     await loadBookingRevervations();
                 });
                 adminBar.appendChild(viewBookingButton);
             } else {
                 await refreshBlockedDates();
                 bookingForm.classList.remove("hide");
-                avalibilityCalendarSection.classList.remove("hide");
                 loader.classList.add("hide");
             }
         } else {
             await refreshBlockedDates();
             bookingForm.classList.remove("hide");
-            avalibilityCalendarSection.classList.remove("hide");
             loader.classList.add("hide");
         }
     });
