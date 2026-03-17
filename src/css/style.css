@@ -9,7 +9,7 @@
     --nav-background-color: #b81f24;
     --nav-color: #fff;
     --main-background-color: #000;
-    --card-background-color: #2e2e2e;;
+    --card-background-color: #2e2e2e;
     --link-color: #9a97f3;
     --red-accent: #b81f24;
     --red-hover: #a51b20;
@@ -209,7 +209,6 @@ main a {
 
 main ul {
   margin: 0 0 10px 15px;
-
 }
 
 #what-we-do {
@@ -273,12 +272,10 @@ footer ul li {
 
 /* Screens between 851px and 1044px */
 @media (min-width: 851px) and (max-width: 1044px) {
-
   header img {
     height: auto;
     width: 465px;
   }
-  
 }
 
 /* Screens smaller than 850 */
@@ -323,5 +320,9 @@ footer ul li {
   footer a:hover,
   footer a:focus {
     background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  #what-we-do {
+    flex-direction: column;
   }
 }
