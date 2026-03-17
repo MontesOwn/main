@@ -4,7 +4,7 @@ import type { Instance } from "flatpickr/dist/types/instance";
 import "flatpickr/dist/flatpickr.css";
 import type { BookingRequest, BookingWithId, SelectOption } from "./models";
 import { Timestamp } from "firebase/firestore";
-import { clearMessages, createButton, createMessage, createTableHeader, makeElement, createSelect, createListElement, storeMessage } from "./modules/utils";
+import { clearMessages, createButton, createMessage, makeElement, createSelect, createListElement, storeMessage } from "./modules/utils";
 import { auth } from "./firebase/firebase.js";
 import { getUserRole } from "./firebase/authService";
 import { deleteBooking, deleteOldBookings, getAllBookings, getBookingsByStatus, getDisabledDates, submitBooking, updateBookingStatus } from "./firebase/firebaseService.js";
