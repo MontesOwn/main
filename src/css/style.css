@@ -325,4 +325,8 @@ footer ul li {
   #what-we-do {
     flex-direction: column;
   }
+
+  #what-we-do article {
+    width: 95%;
+  }
 }
