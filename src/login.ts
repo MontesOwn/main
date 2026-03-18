@@ -6,12 +6,11 @@ import { navigateTo } from "./modules/navigate";
 initializeApp("Monte's Own", "Log in").then(async () => {
     createMessage("Opening Google window...", "main-message", "info");
     try {
-        const result = await signInWithGooglePopup();
+        const userDisplayName = await signInWithGooglePopup();
         //If sucessful sign in with Google, close the modal and display the message
-        const user = result.user;
-        if (user) {
+        if (userDisplayName) {
             storeMessage(
-                `Welcome ${user.displayName}`,
+                `Welcome ${userDisplayName}`,
                 "main-message",
                 "check_circle",
             );
