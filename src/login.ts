@@ -29,5 +29,4 @@ initializeApp("Monte's Own", "Log in").then(async () => {
         createMessage(errorMessage, "main-message", "error");
         console.error("Google sign-in error details:", error);
     }
-
 });
