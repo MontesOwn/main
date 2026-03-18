@@ -3,6 +3,8 @@ import {
   type User,
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
+  type UserCredential,
 } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "./firebase";
@@ -65,15 +67,29 @@ export async function getUserRole(uid: string): Promise<string | null> {
  * Opens the sign in with Google screen in a new window
  * @returns - Returns the result of the sign in
  */
-export async function signInWithGooglePopup() {
-  //Create new instance of Google Auth Provider
+export async function signInWithGooglePopup(): Promise<UserCredential | void> {
   const provider = new GoogleAuthProvider();
+  
+  // 1. Detect environment (Mobile or Firefox)
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+
   try {
-    //Open the pop-up window and wait for the user to sign in
-    const result = await signInWithPopup(auth, provider);
-    // The signed-in user info is in the 'result.user'
-    return result;
+    if (isMobile || isFirefox) {
+      // 2. Use Redirect for problematic browsers
+      // This function will navigate the user away, so the code below won't execute
+      await signInWithRedirect(auth, provider);
+      return; 
+    } else {
+      // 3. Use Popup for Desktop Chrome/Safari/Edge
+      const result = await signInWithPopup(auth, provider);
+      return result;
+    }
   } catch (error: any) {
+    // If a popup is blocked despite our check, fallback to redirect
+    if (error.code === 'auth/popup-blocked') {
+      return await signInWithRedirect(auth, provider);
+    }
     throw error;
   }
 }
