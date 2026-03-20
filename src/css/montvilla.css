@@ -45,10 +45,15 @@
     display: none !important;
 }
 
+html {
+    overscroll-behavior: none;
+}
+
 body {
     background-color: var(--bg-base);
     color: var(--text-main);
     font-family: "Inter", sans-serif;
+    overscroll-behavior: none;
 }
 
 .card {

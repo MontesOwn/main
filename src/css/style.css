@@ -78,9 +78,14 @@
   border: 3px solid white;
 }
 
+html {
+    overscroll-behavior: none;
+}
+
 body {
   background-color: var(--body-background-color);
   color: var(--body-color);
+  overscroll-behavior: none;
 }
 
 .material-symbols-outlined {

@@ -22,7 +22,16 @@
     <a href="#maincontent" class="skip-link" data-i18n="screen_reader_skip">Skip to main content</a>
     <div id="page-wrapper">
         <div class="hero-container">
-            <img src="images/montvilla-outside.png" alt="Hero Background">
+            <picture>
+                <source
+                    srcset="images/outside-day.png"
+                    media="(prefers-color-scheme: light)" id="desktop-header-logo" />
+                <source
+                    srcset="images/outside-night.png"
+                    media="(prefers-color-scheme: dark)" id="desktop-header-logo" />
+                <img src="images/outside-day.png"
+                    alt="Days for Girls logo" id="desktop-header-logo" />
+            </picture>
         </div>
         <header></header>
         <button id="mobile-nav-toggle" aria-label="Open Menu">
@@ -32,114 +41,114 @@
         <section class="message-wrapper" id="main-message"></section>
         <main>
             <div id="main-spacer"></div>
-                <section id="tabs">
-                    <button id="overview-button" type="button">Overview</button>
-                    <button id="gallery-button" type="button">Gallery</button>
-                    <button id="things-button" type="button">Things to do nearby</button>
-                </section>
-                <section id="overview-section" class="hide tab-content">
-                    <h2>Welcome to Your Dream Vacation Home</h2>
-                    <h3>A Magical Stay Awaits</h3>
-                    <p>Our beautiful vacation home, just a short drive from Disney, ensures a relaxing and magical stay.
-                        Nestled in Orange Tree, one of Central Florida’s most prestigious communities, our home is
-                        perfectly
-                        placed along Highway 27, just 2 miles north of US 192. The community is only 9 miles from Disney
-                        World and within easy reach of all major theme parks and attractions.</p>
-                    <h3>Property Highlights</h3>
-                    <p>Orange Tree offers its own 5-acre manicured grounds, featuring a children’s playground, tennis
-                        court,
-                        pickleball courts, soccer pitch, and basketball court, all surrounded by fragrant orange groves.
-                        Additionally, the community is in close proximity to Lake Louisa State Park, a beautiful and
-                        unique
-                        area with rolling hills and scenic landscapes where visitors can swim, hike, bird watch, picnic,
-                        fish, or kayak/canoe.</p>
-                    <ul>
-                        <li>Prime Location: Just a short drive to Disney and Universal attractions</li>
-                        <li>Private Pool: Enjoy your own private oasis</li>
-                        <li>Outdoor Oasis: Dine and lounge in your private outdoor area</li>
-                        <li>Spacious Accommodation: Ideal for families and groups</li>
-                        <li>Stay Connected: Complimentary high-speed WiFi</li>
-                        <li>Modern Kitchen: Well-equipped with modern stainless appliances</li>
-                    </ul>
-                    <h3>Discover Orange Tree</h3>
-                    <p>Orange Tree offers its own 5-acre manicured grounds, featuring a children’s playground, tennis
-                        court,
-                        pickleball courts, soccer pitch, and basketball court, all surrounded by fragrant orange groves.
-                        Additionally, the community is in close proximity to Lake Louisa State Park, a beautiful and
-                        unique
-                        area with rolling hills and scenic landscapes where visitors can swim, hike, bird watch, picnic,
-                        fish, or kayak/canoe.</p>
-                    <a href="/booking.html" class="red-button">View availability</a>
-                </section>
-                <section id="gallery-section" class="hide tab-content"></section>
-                <section id="things-section" class="hide tab-content">
-                    <h2>Historic Downtown Clermont</h2>
-                    <div class="card two-col">
-                        <div id="info">
-                            <h3>Suds Saloon</h3>
-                            <p>Get a drink in a “walking cup” and walk around downtown<br /><a
-                                    href="https://www.google.com/maps/dir//Sud's+Bottleshop+and+Saloon,+821+W+Minneola+Ave,+Clermont,+FL+34711/@28.5560041,-81.7739552,17z/data=!4m17!1m7!3m6!1s0x88e78f8607a1709b:0x8cce8bab575d157f!2sSud's+Bottleshop+and+Saloon!8m2!3d28.5560465!4d-81.7691809!16s%2Fg%2F11v62mhs83!4m8!1m0!1m5!1m1!1s0x88e78f8607a1709b:0x8cce8bab575d157f!2m2!1d-81.7691809!2d28.5560465!3e3?entry=ttu"
-                                    target="_blank">Directions</a></p>
-                        </div>
-                        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/9D6TsgVPrqiFGkiRaobyIw/o.jpg" />
-                    </div>
-                    <div class="card two-col">
-                        <div id="info">
-                            <h3>Waterfront park</h3>
-                            <p>Get a drink in a “walking cup” and walk around downtown <br /><a
-                                    href="https://www.google.com/maps/dir//Sud's+Bottleshop+and+Saloon,+821+W+Minneola+Ave,+Clermont,+FL+34711/@28.5560041,-81.7739552,17z/data=!4m17!1m7!3m6!1s0x88e78f8607a1709b:0x8cce8bab575d157f!2sSud's+Bottleshop+and+Saloon!8m2!3d28.5560465!4d-81.7691809!16s%2Fg%2F11v62mhs83!4m8!1m0!1m5!1m1!1s0x88e78f8607a1709b:0x8cce8bab575d157f!2m2!1d-81.7691809!2d28.5560465!3e3?entry=ttu"
-                                    target="_blank">Directions</a></p>
-                        </div>
-                        <img src="https://photos.bringfido.com/photo/2013/06/10/IMG_2560.JPG?size=slide&density=1x" />
-                    </div>
-                    <div class="card two-col">
-                        <div id="info">
-                            <h3>South Lake Animal League Thrift Shop</h3>
-                            <p>Dog friendly, has a nice pet section where we’ve bought dog bowls and leashes. <br /><a
-                                    href="https://www.google.com/maps/dir//South+Lake+Animal+League+Thrift+Shop,+770+W+Montrose+St,+Clermont,+FL+34711/@28.5554947,-81.7680956,15z/data=!4m17!1m7!3m6!1s0x88e78e8589533f6b:0x8b6a6ffa738856d1!2sSouth+Lake+Animal+League+Thrift+Shop!8m2!3d28.5554947!4d-81.7680956!16s%2Fg%2F1tmxxdt4!4m8!1m0!1m5!1m1!1s0x88e78e8589533f6b:0x8b6a6ffa738856d1!2m2!1d-81.7680956!2d28.5554947!3e3?hl=en&entry=ttu"
-                                    target="_blank">Directions</a></p>
-                        </div>
-                        <img
-                            src="https://us1-photo.nextdoor.com/pages_avatar_photos/67/af/67af1455b9a5a1be92e0c6feda4ab053.JPG" />
-                    </div>
-                    <div class="card one-col">
-                        <h3>Restaurants we’ve been to</h3>
-                        <p>Suncreek Brewery - food vendors, dog friendly - <a
-                                href="https://www.google.com/maps/dir//Suncreek+Brewery,+790+W+Minneola+Ave,+Clermont,+FL+34711/@28.5565866,-81.7683135,15z/data=!4m17!1m7!3m6!1s0x88e78e85f0f8d669:0xd51891ab1838deb5!2sSuncreek+Brewery!8m2!3d28.5565866!4d-81.7683135!16s%2Fg%2F11c719gj52!4m8!1m0!1m5!1m1!1s0x88e78e85f0f8d669:0xd51891ab1838deb5!2m2!1d-81.7683135!2d28.5565866!3e3?entry=ttu"
-                                target="_blank">Directions</a></p>
-                        <p>Clermont Brewing Company - Suncreek better, but was in midst of ownership change when we went
-                            - <a href="https://www.google.com/maps/dir//Clermont+Brewing+Company,+750+W+Desoto+St,+Clermont,+FL+34711/@28.5544905,-81.7677859,15z/data=!4m17!1m7!3m6!1s0x88e78f6adb954a59:0xb73243f0641273fb!2sClermont+Brewing+Company!8m2!3d28.5544905!4d-81.7677859!16s%2Fg%2F11h7d8w97y!4m8!1m0!1m5!1m1!1s0x88e78f6adb954a59:0xb73243f0641273fb!2m2!1d-81.7677859!2d28.5544905!3e3?entry=ttu"
-                                target="_blank">Directions</a></p>
-                        <p>Pepe’s Cantina - great! get the tableside guacamole, patio in back is dog friendly - <a
-                                href="https://www.google.com/maps/dir//Pepe's+Cantina+Clermont,+794+W+Minneola+Ave,+Clermont,+FL+34711/@28.5565241,-81.7684695,15z/data=!4m17!1m7!3m6!1s0x88e78f078e1f70a7:0x4802a5f10675e9ec!2sPepe's+Cantina+Clermont!8m2!3d28.5565241!4d-81.7684695!16s%2Fg%2F11k1jmlmms!4m8!1m0!1m5!1m1!1s0x88e78f078e1f70a7:0x4802a5f10675e9ec!2m2!1d-81.768538!2d28.5565244!3e3?entry=ttu"
+            <section id="tabs">
+                <button id="overview-button" type="button">Overview</button>
+                <button id="gallery-button" type="button">Gallery</button>
+                <button id="things-button" type="button">Things to do nearby</button>
+            </section>
+            <section id="overview-section" class="hide tab-content">
+                <h2>Welcome to Your Dream Vacation Home</h2>
+                <h3>A Magical Stay Awaits</h3>
+                <p>Our beautiful vacation home, just a short drive from Disney, ensures a relaxing and magical stay.
+                    Nestled in Orange Tree, one of Central Florida’s most prestigious communities, our home is
+                    perfectly
+                    placed along Highway 27, just 2 miles north of US 192. The community is only 9 miles from Disney
+                    World and within easy reach of all major theme parks and attractions.</p>
+                <h3>Property Highlights</h3>
+                <p>Orange Tree offers its own 5-acre manicured grounds, featuring a children’s playground, tennis
+                    court,
+                    pickleball courts, soccer pitch, and basketball court, all surrounded by fragrant orange groves.
+                    Additionally, the community is in close proximity to Lake Louisa State Park, a beautiful and
+                    unique
+                    area with rolling hills and scenic landscapes where visitors can swim, hike, bird watch, picnic,
+                    fish, or kayak/canoe.</p>
+                <ul>
+                    <li>Prime Location: Just a short drive to Disney and Universal attractions</li>
+                    <li>Private Pool: Enjoy your own private oasis</li>
+                    <li>Outdoor Oasis: Dine and lounge in your private outdoor area</li>
+                    <li>Spacious Accommodation: Ideal for families and groups</li>
+                    <li>Stay Connected: Complimentary high-speed WiFi</li>
+                    <li>Modern Kitchen: Well-equipped with modern stainless appliances</li>
+                </ul>
+                <h3>Discover Orange Tree</h3>
+                <p>Orange Tree offers its own 5-acre manicured grounds, featuring a children’s playground, tennis
+                    court,
+                    pickleball courts, soccer pitch, and basketball court, all surrounded by fragrant orange groves.
+                    Additionally, the community is in close proximity to Lake Louisa State Park, a beautiful and
+                    unique
+                    area with rolling hills and scenic landscapes where visitors can swim, hike, bird watch, picnic,
+                    fish, or kayak/canoe.</p>
+                <a href="/booking.html" class="red-button">View availability</a>
+            </section>
+            <section id="gallery-section" class="hide tab-content"></section>
+            <section id="things-section" class="hide tab-content">
+                <h2>Historic Downtown Clermont</h2>
+                <div class="card two-col">
+                    <div id="info">
+                        <h3>Suds Saloon</h3>
+                        <p>Get a drink in a “walking cup” and walk around downtown<br /><a
+                                href="https://www.google.com/maps/dir//Sud's+Bottleshop+and+Saloon,+821+W+Minneola+Ave,+Clermont,+FL+34711/@28.5560041,-81.7739552,17z/data=!4m17!1m7!3m6!1s0x88e78f8607a1709b:0x8cce8bab575d157f!2sSud's+Bottleshop+and+Saloon!8m2!3d28.5560465!4d-81.7691809!16s%2Fg%2F11v62mhs83!4m8!1m0!1m5!1m1!1s0x88e78f8607a1709b:0x8cce8bab575d157f!2m2!1d-81.7691809!2d28.5560465!3e3?entry=ttu"
                                 target="_blank">Directions</a></p>
                     </div>
-                    <div class="card one-col">
-                        <h3>Restaurants we want to try</h3>
-                        <p>Cheesers Palace Cafe - <a
-                                href="https://www.google.com/maps/dir//Cheeser's+Palace+Cafe,+707+W+Montrose+St,+Clermont,+FL+34711/@28.5551071,-81.7671204,15z/data=!4m17!1m7!3m6!1s0x88e78e8f653ff50f:0xe4b5fe1913970080!2sCheeser's+Palace+Cafe!8m2!3d28.5551071!4d-81.7671204!16s%2Fg%2F1v0lllzq!4m8!1m0!1m5!1m1!1s0x88e78e8f653ff50f:0xe4b5fe1913970080!2m2!1d-81.7671204!2d28.5551071!3e3?entry=ttu"
-                                target="_blank">Directions</a></p>
-                        <p>The Southern on 8th - <a
-                                href="https://www.google.com/maps/dir//The+Southern+on+8th,+801+W+Montrose+St,+Clermont,+FL+34711/@28.5551225,-81.7689189,15z/data=!4m17!1m7!3m6!1s0x88e78f776a893c69:0xb9b0d7ef0d66a684!2sThe+Southern+on+8th!8m2!3d28.5551225!4d-81.7689189!16s%2Fg%2F11qqh66mqc!4m8!1m0!1m5!1m1!1s0x88e78f776a893c69:0xb9b0d7ef0d66a684!2m2!1d-81.7689189!2d28.5551225!3e3?entry=ttu"
-                                target="_blank">Directions</a></p>
-                        <p>Salt Shack on the Lake - <a
-                                href="https://www.google.com/maps/dir//Salt+Shack+on+the+Lake,+846+W+Osceola+St,+Clermont,+FL+34711/@28.5576518,-81.7690781,15z/data=!4m17!1m7!3m6!1s0x88e78f5d41984f39:0xca620a6bba6b05ad!2sSalt+Shack+on+the+Lake!8m2!3d28.5576518!4d-81.7690781!16s%2Fg%2F11svkxgxv0!4m8!1m0!1m5!1m1!1s0x88e78f5d41984f39:0xca620a6bba6b05ad!2m2!1d-81.7690781!2d28.5576518!3e3?entry=ttu"
+                    <img src="https://s3-media0.fl.yelpcdn.com/bphoto/9D6TsgVPrqiFGkiRaobyIw/o.jpg" />
+                </div>
+                <div class="card two-col">
+                    <div id="info">
+                        <h3>Waterfront park</h3>
+                        <p>Get a drink in a “walking cup” and walk around downtown <br /><a
+                                href="https://www.google.com/maps/dir//Sud's+Bottleshop+and+Saloon,+821+W+Minneola+Ave,+Clermont,+FL+34711/@28.5560041,-81.7739552,17z/data=!4m17!1m7!3m6!1s0x88e78f8607a1709b:0x8cce8bab575d157f!2sSud's+Bottleshop+and+Saloon!8m2!3d28.5560465!4d-81.7691809!16s%2Fg%2F11v62mhs83!4m8!1m0!1m5!1m1!1s0x88e78f8607a1709b:0x8cce8bab575d157f!2m2!1d-81.7691809!2d28.5560465!3e3?entry=ttu"
                                 target="_blank">Directions</a></p>
                     </div>
-                    <h2>Nearby Groceries</h2>
-                    <div class="card one-col">
-                        <h3>South on 27</h3>
-                        <p>[5 min] Publix - super convenient, but more expensive</p>
-                        <p>[15 min] Aldi on 192 - close to 27 </p>
-                        <p>[15 min] Walmart on 192 at Cagans Crossing Advice - go first thing in the morning (I aim for
-                            7am) Stand alone liquor store in parking lot </p>
-                        <p>[18 min] Target on 192 </p>
+                    <img src="https://photos.bringfido.com/photo/2013/06/10/IMG_2560.JPG?size=slide&density=1x" />
+                </div>
+                <div class="card two-col">
+                    <div id="info">
+                        <h3>South Lake Animal League Thrift Shop</h3>
+                        <p>Dog friendly, has a nice pet section where we’ve bought dog bowls and leashes. <br /><a
+                                href="https://www.google.com/maps/dir//South+Lake+Animal+League+Thrift+Shop,+770+W+Montrose+St,+Clermont,+FL+34711/@28.5554947,-81.7680956,15z/data=!4m17!1m7!3m6!1s0x88e78e8589533f6b:0x8b6a6ffa738856d1!2sSouth+Lake+Animal+League+Thrift+Shop!8m2!3d28.5554947!4d-81.7680956!16s%2Fg%2F1tmxxdt4!4m8!1m0!1m5!1m1!1s0x88e78e8589533f6b:0x8b6a6ffa738856d1!2m2!1d-81.7680956!2d28.5554947!3e3?hl=en&entry=ttu"
+                                target="_blank">Directions</a></p>
                     </div>
-                    <div class="card one-col">
-                        <h3>North on 27</h3>
-                        <p>[30 minutes] Costco on Rt 50 - Separate entrance liquor store</p>
-                    </div>
-                </section>
+                    <img
+                        src="https://us1-photo.nextdoor.com/pages_avatar_photos/67/af/67af1455b9a5a1be92e0c6feda4ab053.JPG" />
+                </div>
+                <div class="card one-col">
+                    <h3>Restaurants we’ve been to</h3>
+                    <p>Suncreek Brewery - food vendors, dog friendly - <a
+                            href="https://www.google.com/maps/dir//Suncreek+Brewery,+790+W+Minneola+Ave,+Clermont,+FL+34711/@28.5565866,-81.7683135,15z/data=!4m17!1m7!3m6!1s0x88e78e85f0f8d669:0xd51891ab1838deb5!2sSuncreek+Brewery!8m2!3d28.5565866!4d-81.7683135!16s%2Fg%2F11c719gj52!4m8!1m0!1m5!1m1!1s0x88e78e85f0f8d669:0xd51891ab1838deb5!2m2!1d-81.7683135!2d28.5565866!3e3?entry=ttu"
+                            target="_blank">Directions</a></p>
+                    <p>Clermont Brewing Company - Suncreek better, but was in midst of ownership change when we went
+                        - <a href="https://www.google.com/maps/dir//Clermont+Brewing+Company,+750+W+Desoto+St,+Clermont,+FL+34711/@28.5544905,-81.7677859,15z/data=!4m17!1m7!3m6!1s0x88e78f6adb954a59:0xb73243f0641273fb!2sClermont+Brewing+Company!8m2!3d28.5544905!4d-81.7677859!16s%2Fg%2F11h7d8w97y!4m8!1m0!1m5!1m1!1s0x88e78f6adb954a59:0xb73243f0641273fb!2m2!1d-81.7677859!2d28.5544905!3e3?entry=ttu"
+                            target="_blank">Directions</a></p>
+                    <p>Pepe’s Cantina - great! get the tableside guacamole, patio in back is dog friendly - <a
+                            href="https://www.google.com/maps/dir//Pepe's+Cantina+Clermont,+794+W+Minneola+Ave,+Clermont,+FL+34711/@28.5565241,-81.7684695,15z/data=!4m17!1m7!3m6!1s0x88e78f078e1f70a7:0x4802a5f10675e9ec!2sPepe's+Cantina+Clermont!8m2!3d28.5565241!4d-81.7684695!16s%2Fg%2F11k1jmlmms!4m8!1m0!1m5!1m1!1s0x88e78f078e1f70a7:0x4802a5f10675e9ec!2m2!1d-81.768538!2d28.5565244!3e3?entry=ttu"
+                            target="_blank">Directions</a></p>
+                </div>
+                <div class="card one-col">
+                    <h3>Restaurants we want to try</h3>
+                    <p>Cheesers Palace Cafe - <a
+                            href="https://www.google.com/maps/dir//Cheeser's+Palace+Cafe,+707+W+Montrose+St,+Clermont,+FL+34711/@28.5551071,-81.7671204,15z/data=!4m17!1m7!3m6!1s0x88e78e8f653ff50f:0xe4b5fe1913970080!2sCheeser's+Palace+Cafe!8m2!3d28.5551071!4d-81.7671204!16s%2Fg%2F1v0lllzq!4m8!1m0!1m5!1m1!1s0x88e78e8f653ff50f:0xe4b5fe1913970080!2m2!1d-81.7671204!2d28.5551071!3e3?entry=ttu"
+                            target="_blank">Directions</a></p>
+                    <p>The Southern on 8th - <a
+                            href="https://www.google.com/maps/dir//The+Southern+on+8th,+801+W+Montrose+St,+Clermont,+FL+34711/@28.5551225,-81.7689189,15z/data=!4m17!1m7!3m6!1s0x88e78f776a893c69:0xb9b0d7ef0d66a684!2sThe+Southern+on+8th!8m2!3d28.5551225!4d-81.7689189!16s%2Fg%2F11qqh66mqc!4m8!1m0!1m5!1m1!1s0x88e78f776a893c69:0xb9b0d7ef0d66a684!2m2!1d-81.7689189!2d28.5551225!3e3?entry=ttu"
+                            target="_blank">Directions</a></p>
+                    <p>Salt Shack on the Lake - <a
+                            href="https://www.google.com/maps/dir//Salt+Shack+on+the+Lake,+846+W+Osceola+St,+Clermont,+FL+34711/@28.5576518,-81.7690781,15z/data=!4m17!1m7!3m6!1s0x88e78f5d41984f39:0xca620a6bba6b05ad!2sSalt+Shack+on+the+Lake!8m2!3d28.5576518!4d-81.7690781!16s%2Fg%2F11svkxgxv0!4m8!1m0!1m5!1m1!1s0x88e78f5d41984f39:0xca620a6bba6b05ad!2m2!1d-81.7690781!2d28.5576518!3e3?entry=ttu"
+                            target="_blank">Directions</a></p>
+                </div>
+                <h2>Nearby Groceries</h2>
+                <div class="card one-col">
+                    <h3>South on 27</h3>
+                    <p>[5 min] Publix - super convenient, but more expensive</p>
+                    <p>[15 min] Aldi on 192 - close to 27 </p>
+                    <p>[15 min] Walmart on 192 at Cagans Crossing Advice - go first thing in the morning (I aim for
+                        7am) Stand alone liquor store in parking lot </p>
+                    <p>[18 min] Target on 192 </p>
+                </div>
+                <div class="card one-col">
+                    <h3>North on 27</h3>
+                    <p>[30 minutes] Costco on Rt 50 - Separate entrance liquor store</p>
+                </div>
+            </section>
         </main>
         <footer></footer>
     </div>
