@@ -3,7 +3,7 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 2000;
+    z-index: 90;
     background: var(--red-accent);
     color: white;
     border: none;

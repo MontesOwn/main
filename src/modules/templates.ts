@@ -17,7 +17,7 @@ export function loadNav(partentPage: string) {
     home.addEventListener('click', () => navigateTo('/'));
     nav.appendChild(home);
     const montvilla = createLink("Montvilla", "", false);
-    montvilla.addEventListener('click', () => navigateTo('/montvilla'));
+    montvilla.addEventListener('click', () => navigateTo("/montvilla", { params: { tab: "overview" } }));
     nav.appendChild(montvilla);
     if (partentPage === "Monte's Own") {
         const beekeeping = createLink("Beekeeping", "", false);
@@ -33,9 +33,6 @@ export function loadNav(partentPage: string) {
         chickens.addEventListener('click', () => navigateTo('/chickens'));
         nav.appendChild(chickens);
     } else if (partentPage === "Montvilla") {
-        const montvillaMain = createLink("Montvilla", "", false);
-        montvillaMain.addEventListener("click", () => navigateTo("/montvilla", { params: { tab: "overview" } }));
-        nav.appendChild(montvillaMain);
         const montvillaGallery = createLink("Gallery", "", false);
         montvillaGallery.addEventListener('click', () => navigateTo("/montvilla", { params: { tab: "gallery" } }));
         nav.appendChild(montvillaGallery);
