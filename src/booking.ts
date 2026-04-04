@@ -203,11 +203,11 @@ async function loadCalendarMonth() {
     calendarContainer.appendChild(calendarBody);
     avalibilityCalendarSection.appendChild(calendarContainer);
     const legend = makeElement("div", "calendar-legend", "", null);
-    const grey = makeElement("div", null, null, "Unavailible");
+    const grey = makeElement("div", null, null, "Unavailable");
     const greyDot = makeElement("span", null, "dot bg-grey", null);
     grey.prepend(greyDot);
     legend.appendChild(grey);
-    const green = makeElement("div", null, null, "Availible");
+    const green = makeElement("div", null, null, "Available");
     const greenDot = makeElement("span", null, "dot bg-green", null);
     green.prepend(greenDot)
     legend.appendChild(green);
@@ -415,7 +415,7 @@ async function loadBookingRevervations() {
 }
 
 
-initializeApp("Montvilla", "Monvilla Booking").then(async () => {
+initializeApp("Montvilla", "Calendar").then(async () => {
     await loadCalendarMonth();
     auth.onAuthStateChanged(async (user) => {
         if (user) {

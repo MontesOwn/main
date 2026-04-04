@@ -2,7 +2,7 @@ export const ALL_APP_PATHS = [
   '/',
   '/index',
   '/beekeeping',
-  '/booking',
+  '/calendar',
   '/chickens',
   '/garden',
   '/login',

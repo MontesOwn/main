@@ -39,8 +39,8 @@ export function loadNav(partentPage: string) {
         const montvillaNearby = createLink("Nearby", "", false);
         montvillaNearby.addEventListener('click', () => navigateTo("/montvilla", { params: { tab: "nearby" } }));
         nav.appendChild(montvillaNearby);
-        const viewAvailability = createLink("Booking", "", false);
-        viewAvailability.addEventListener('click', () => navigateTo("/booking"));
+        const viewAvailability = createLink("Calendar", "", false);
+        viewAvailability.addEventListener('click', () => navigateTo("/calendar"));
         nav.appendChild(viewAvailability);
     }
 
